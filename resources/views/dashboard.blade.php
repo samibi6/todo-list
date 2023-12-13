@@ -12,12 +12,17 @@
                     <form method="POST" action="{{ route('dashboard.add') }}" class="mb-4">
                         @csrf
                         <label for="description" class="font-bold">Ajouter une tâche:</label>
-                        <input type="text" name="description" id="description">
+                        <input type="text" name="description" id="description" class="rounded-full">
                         <input type="submit" value="Ajouter"
                             class="hover:cursor-pointer bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-800">
                     </form>
+                    <h2 class="font-bold">Tâches à faire</h2>
                     @foreach ($tasks as $task)
                         <x-task-line :task="$task" />
+                    @endforeach
+                    <h2 class="font-bold mt-4">Tâches réalisées</h2>
+                    @foreach ($completedTasks as $completedTask)
+                        <x-task-line :task="$completedTask" />
                     @endforeach
                 </div>
             </div>

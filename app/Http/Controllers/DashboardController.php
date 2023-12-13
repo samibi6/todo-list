@@ -14,12 +14,25 @@ class DashboardController extends Controller
         $user = Auth::user();
         $tasks = $user
             ->tasks()
+            ->where('completed', false)
             ->orderByDesc('created_at')
             ->get();
+
+        $completedTasks = $user
+            ->tasks()
+            ->where('completed', true)
+            ->orderByDesc('created_at')
+            ->get();
+
+        // $tasksGroup = $tasks->mapToGroups(function($task, $key){
+        //     $cat = $task->completed ? 'done' : 'todo';
+        //     return [$cat => $task];
+        // });
 
         return view('dashboard', [
             'user' => $user,
             'tasks' => $tasks,
+            'completedTasks' => $completedTasks
         ]);
     }
 
