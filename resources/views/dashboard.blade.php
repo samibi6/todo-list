@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Todo List') }}
+            {{ __('app.todoList') }}
         </h2>
     </x-slot>
 
@@ -11,16 +11,16 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <form method="POST" action="{{ route('dashboard.add') }}" class="mb-4">
                         @csrf
-                        <label for="description" class="font-bold">Ajouter une tâche:</label>
+                        <label for="description" class="font-bold">{{ __('app.addTask') }}</label>
                         <input type="text" name="description" id="description" class="rounded-full">
-                        <input type="submit" value="Ajouter"
+                        <input type="submit" value="{{ __('app.addButton') }}"
                             class="hover:cursor-pointer bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-800">
                     </form>
-                    <h2 class="font-bold">Tâches à faire</h2>
+                    <h2 class="font-bold">{{ __('app.taskTodo') }}</h2>
                     @foreach ($tasks as $task)
                         <x-task-line :task="$task" />
                     @endforeach
-                    <h2 class="font-bold mt-4">Tâches réalisées</h2>
+                    <h2 class="font-bold mt-4">{{ __('app.taskDone') }}</h2>
                     @foreach ($completedTasks as $completedTask)
                         <x-task-line :task="$completedTask" />
                     @endforeach
@@ -33,20 +33,20 @@
                 @method('DELETE')
 
                 <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-                    Êtes-vous sûr de vouloir supprimer cette tâche ?
+                    {{ __('app.modalQuestion') }}
                 </h2>
 
                 <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                    Cette action est irréversible. Toutes les données seront supprimées.
+                    {{ __('app.modalMessage') }}
                 </p>
 
                 <div class="mt-6 flex justify-end">
                     <x-secondary-button x-on:click="$dispatch('close')">
-                        Annuler
+                        {{ __('app.modalCancel') }}
                     </x-secondary-button>
 
                     <x-danger-button class="ml-3" type="submit">
-                        Supprimer
+                        {{ __('app.modalDelete') }}
                     </x-danger-button>
                 </div>
             </form>

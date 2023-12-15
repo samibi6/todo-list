@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/dashboard/{task}', [DashboardController::class, 'update'])->name('dashboard.update');
     Route::delete('/dashboard/{task}', [DashboardController::class, 'delete'])->name('dashboard.delete');
     Route::post('/dashboard', [DashboardController::class, 'add'])->name('dashboard.add');
+    Route::get('/lang/{lang}', [DashboardController::class, 'lang'])->name('dashboard.lang');
 });
 
 require __DIR__ . '/auth.php';
